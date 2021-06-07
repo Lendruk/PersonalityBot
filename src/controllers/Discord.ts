@@ -1,7 +1,10 @@
 import { Client, Message } from 'discord.js';
+import { injectable } from 'inversify';
 import { fromEventPattern, Observable } from 'rxjs';
+import StartableService from '../types/StartableService';
 
-export default class Discord {
+@injectable()
+export default class Discord implements StartableService {
   private client: Client;
   private onMessage$: Observable<Message>;
 
@@ -10,15 +13,19 @@ export default class Discord {
 
     this.onMessage$ = fromEventPattern<Message>(handler => this.client.on('message', handler));
   }
-
-  public start(): void {
+  start(): void {
     this.client.login(process.env.BOT_TOKEN);
   }
-
-  public sendMessage(message: string): void {
+  
+  public sendMessage(message: Message): void {
+    this.client.emit('message', message);
   }
 
   public onMessage(): Observable<Message> {
     return this.onMessage$;
+  }
+
+  public getClient(): Client {
+    return this.client;
   }
 }

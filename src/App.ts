@@ -22,8 +22,8 @@ export default class App {
   }
 
   private loadIocContainers(): void {
-    for(const container of containerModules) {
-      this.container.load(container.getContainerModule());
+    for(const module of containerModules) {
+      module.start(this.container)
     }
   }
 }
