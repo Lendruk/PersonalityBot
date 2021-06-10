@@ -4,6 +4,7 @@ import MessageHandler from "../controllers/MessageHandler";
 import IocContainer from "../types/IocContainer";
 import botConfig from '../config.json';
 import { BotConfig } from "../types/BotConfig";
+import CommandService from "../controllers/CommandService";
 
 export default class BaseModule implements IocContainer {
   private module: ContainerModule;
@@ -12,6 +13,7 @@ export default class BaseModule implements IocContainer {
 
       bind<Discord>("Discord").to(Discord).inSingletonScope();
       bind<MessageHandler>("MessageHandler").to(MessageHandler).inSingletonScope();
+      bind<CommandService>("CommandService").to(CommandService).inSingletonScope();
       bind<BotConfig>("BotConfig").toConstantValue(botConfig);
     });
   }
@@ -26,6 +28,7 @@ export default class BaseModule implements IocContainer {
    await Promise.race([
       container.get<Discord>("Discord").start(),
       container.get<MessageHandler>("MessageHandler").start(),
+      container.get<CommandService>("CommandService").start()
    ]);
   }
 }

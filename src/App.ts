@@ -18,7 +18,11 @@ export default class App {
   public async start(): Promise<void> {
     this.loadIocContainers();
     // Connect to the Database
-    // this.database.connect();
+    try {
+      // this.database.connect();
+    } catch(error) {
+      console.error(error);
+    }
   }
 
   private loadIocContainers(): void {
