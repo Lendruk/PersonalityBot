@@ -4,7 +4,7 @@ import { Mood } from "./Moods";
 
 export type Command = {
   key: string,
-  args: Argument[],
+  verbs: string[],
   requirements: {
     moods?: Mood[]
   },
@@ -18,6 +18,8 @@ export type ActiveCommand = {
 };
 
 export type Argument = {
-  argId: string,
-  semanthicText: string[],
+  type: 'string' | 'boolean' | 'number';
+  identifier: string;
+  words: string[];
+  optional: boolean;
 };

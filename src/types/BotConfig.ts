@@ -6,6 +6,7 @@ export type BotConfig = {
     commands: Command[],
     responses: {
         notFound: string[],
-        noKnowledge: string[]
+        noKnowledge: string[],
+        needInfo: string[]
     }
 };

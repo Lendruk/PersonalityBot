@@ -27,6 +27,6 @@ export default class MessageHandler implements StartableService {
       message.channel.send("<@315534723847815168> responds");
     }
 
-    this.commandService.processCommand(message);
+    this.commandService.processMessage(message);
   }
 } 

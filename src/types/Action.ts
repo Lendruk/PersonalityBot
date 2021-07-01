@@ -1,9 +1,13 @@
+import { Argument } from "./Command";
+
 export enum ActionType {
     PING,
     TEXT_OUTPUT,
     UNKNOWN
 }
+
 export type Action = {
-    type: ActionType,
-    params: string | null,
+    word: string;
+    script: string;
+    arguments: Argument[];
 };

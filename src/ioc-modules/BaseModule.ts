@@ -14,7 +14,7 @@ export default class BaseModule implements IocContainer {
       bind<Discord>("Discord").to(Discord).inSingletonScope();
       bind<MessageHandler>("MessageHandler").to(MessageHandler).inSingletonScope();
       bind<CommandService>("CommandService").to(CommandService).inSingletonScope();
-      bind<BotConfig>("BotConfig").toConstantValue(botConfig);
+      bind<BotConfig>("BotConfig").toConstantValue(botConfig as BotConfig);
     });
   }
 
