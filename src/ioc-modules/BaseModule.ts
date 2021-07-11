@@ -5,6 +5,7 @@ import IocContainer from "../types/IocContainer";
 import botConfig from '../config.json';
 import { BotConfig } from "../types/BotConfig";
 import CommandService from "../controllers/CommandService";
+import TriggerHandler from "../controllers/TriggerHandler";
 
 export default class BaseModule implements IocContainer {
   private module: ContainerModule;
@@ -14,6 +15,7 @@ export default class BaseModule implements IocContainer {
       bind<Discord>("Discord").to(Discord).inSingletonScope();
       bind<MessageHandler>("MessageHandler").to(MessageHandler).inSingletonScope();
       bind<CommandService>("CommandService").to(CommandService).inSingletonScope();
+      bind<TriggerHandler>("TriggerHandler").to(TriggerHandler).inSingletonScope();
       bind<BotConfig>("BotConfig").toConstantValue(botConfig as BotConfig);
     });
   }

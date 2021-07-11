@@ -4,6 +4,7 @@ import Discord from "./Discord";
 import { BotConfig } from "../types/BotConfig";
 import StartableService from "../types/StartableService";
 import CommandService from "./CommandService";
+import TriggerHandler from "./TriggerHandler";
 
 @injectable()
 export default class MessageHandler implements StartableService {
@@ -11,6 +12,7 @@ export default class MessageHandler implements StartableService {
     @inject("Discord") private discordService: Discord,
     @inject("BotConfig") private botConfig: BotConfig,
     @inject("CommandService") private commandService: CommandService,
+    @inject("TriggerHandler") private triggerHandler: TriggerHandler,
   ) {}
 
   /**
@@ -23,10 +25,11 @@ export default class MessageHandler implements StartableService {
   private handleMessage(message: Message): void {
     if(message.author.id === this.botConfig.id) return;
     
-    if(message.content.includes("dev")) {
-      message.channel.send("<@315534723847815168> responds");
-    }
+    // if(message.content.includes("dev")) {
+    //   message.channel.send("<@315534723847815168> responds");
+    // }
 
+    this.triggerHandler.processTriggers(message);
     this.commandService.processMessage(message);
   }
 } 

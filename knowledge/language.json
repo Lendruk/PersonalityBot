@@ -1,0 +1,12 @@
+{
+    "andWords": "e",
+    "orWords": "ou",
+    "ifWords": "se",
+    "butWords": "mas",
+    "articles": ["o", "a", "os", "as"],
+    "verbs": {
+        "dar": {
+            "conjugations": ["dá"]
+        }
+    }
+}
